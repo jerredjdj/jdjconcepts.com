@@ -16,24 +16,45 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            position: relative;
+            overflow: hidden;
         }
 
-        /* Centering the image */
+        /* Centering the image container */
         .image-container {
             position: relative;
             width: 75%;
             max-width: 1200px;
+            aspect-ratio: 16 / 9;  /* Keeps the aspect ratio fixed */
+            overflow: hidden;
         }
 
-        .image-container img {
+        .slideshow {
+            position: relative;
             width: 100%;
-            height: auto;
-            display: block;
-            border-radius: 10px; /* Optional rounded corners */
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2); /* Optional glow effect */
+            height: 100%; /* Fixed height based on aspect ratio */
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
         }
 
-        /* Centered text over image */
+        .slideshow img {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            object-fit: cover; /* Ensures images maintain aspect ratio without stretching */
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        .slideshow img.show {
+            opacity: 1;
+            position: relative;
+        }
+
+        /* Centered text over the image */
         .overlay-text {
             position: absolute;
             top: 50%;
@@ -41,29 +62,30 @@
             transform: translate(-50%, -50%);
             text-align: center;
             color: white;
-            animation: fadeIn 3s ease-in-out;
             width: 100%;
+            z-index: 2;
+            animation: fadeInText 3s ease-in-out;
         }
 
         .overlay-text h1 {
-            font-size: 4vw; /* Responsive font size */
+            font-size: 4vw;
             margin: 0;
             text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
         }
 
         .overlay-text p {
-            font-size: 2vw; /* Responsive font size */
+            font-size: 2vw;
             margin-top: 10px;
             text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
         }
 
-        /* Fade-in effect */
-        @keyframes fadeIn {
+        /* Fade-in effect for text */
+        @keyframes fadeInText {
             from { opacity: 0; }
             to { opacity: 1; }
         }
 
-        /* Responsive adjustments */
+        /* Responsive design for smaller screens */
         @media (max-width: 768px) {
             .image-container {
                 width: 90%;
@@ -79,11 +101,38 @@
 </head>
 <body>
     <div class="image-container">
-        <img src="kitchen.jpg" alt="Modern Kitchen">
+        <div class="slideshow">
+            <img src="kitchen.jpg" class="show" alt="Modern Kitchen 1">
+            <img src="kitchen2.jpg" alt="Modern Kitchen 2">
+            <img src="kitchen3.jpg" alt="Modern Kitchen 3">
+        </div>
         <div class="overlay-text">
             <h1>Coming Soon...</h1>
-            <h1>JDJ Concepts</h1>
+            <p>JDJ Concepts</p>
         </div>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            console.log("Slideshow script loaded successfully.");
+
+            const images = document.querySelectorAll('.slideshow img');
+            let currentIndex = 0;
+
+            function changeImage() {
+                console.log("Changing image to index:", currentIndex);
+
+                // Remove the 'show' class from current image
+                images.forEach(img => img.classList.remove('show'));
+
+                // Update index and add the 'show' class to the next image
+                currentIndex = (currentIndex + 1) % images.length;
+                images[currentIndex].classList.add('show');
+            }
+
+            // Start the slideshow every 5 seconds
+            setInterval(changeImage, 5000);
+        });
+    </script>
 </body>
 </html>
