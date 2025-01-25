@@ -6,37 +6,84 @@
     <meta name="description" content="Coming soon page for JDJ Concepts">
     <title>JDJ Concepts</title>
     <style>
+        /* General body styling */
         body {
+            margin: 0;
+            padding: 0;
+            background-color: #000000;
+            font-family: Arial, sans-serif;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #121212;
-            color: #ffffff;
-            font-family: Arial, sans-serif;
+        }
+
+        /* Centering the image */
+        .image-container {
+            position: relative;
+            width: 75%;
+            max-width: 1200px;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 10px; /* Optional rounded corners */
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2); /* Optional glow effect */
+        }
+
+        /* Centered text over image */
+        .overlay-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             text-align: center;
+            color: white;
+            animation: fadeIn 3s ease-in-out;
+            width: 100%;
         }
-        .content {
-            animation: fadeIn 4s ease-in-out;
+
+        .overlay-text h1 {
+            font-size: 4vw; /* Responsive font size */
+            margin: 0;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
         }
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
+
+        .overlay-text p {
+            font-size: 2vw; /* Responsive font size */
+            margin-top: 10px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
         }
-        p {
-            font-size: 1.5rem;
-        }
+
+        /* Fade-in effect */
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .image-container {
+                width: 90%;
+            }
+            .overlay-text h1 {
+                font-size: 6vw;
+            }
+            .overlay-text p {
+                font-size: 3vw;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="content">
-        <p>Coming Soon...</p>
-        <h1>JDJ Concepts</h1>
+    <div class="image-container">
+        <img src="kitchen.jpg" alt="Modern Kitchen">
+        <div class="overlay-text">
+            <h1>Coming Soon...</h1>
+            <h1>JDJ Concepts</h1>
+        </div>
     </div>
 </body>
 </html>
