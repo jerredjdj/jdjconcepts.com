@@ -54,38 +54,37 @@
             position: relative;
         }
 
-        /* Centered text over the image */
-        .overlay-text {
+        /* Centered content (text + logo) over the image */
+        .overlay-content {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             text-align: center;
-            color: white;
-            width: 100%;
             z-index: 2;
-            animation: fadeInText 3s ease-in-out;
+            animation: fadeInContent 3s ease-in-out;
         }
 
-        .overlay-text h1 {
-            font-size: 4vw;
-            margin: 0;
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+        .overlay-content h1 {
+            font-size: 3vw; /* Smaller text */
+            color: white;
+            margin-bottom: -10px;  /* Negative margin to bring text closer to logo */
+            font-weight: bold;
         }
 
-        .overlay-text p {
-            font-size: 2vw;
-            margin-top: 10px;
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+        .overlay-content img {
+            width: 80%;
+            max-width: 800px;  /* Bigger logo on larger screens */
+            height: auto;
         }
 
-        /* Fade-in effect for text */
-        @keyframes fadeInText {
+        /* Fade-in effect for content */
+        @keyframes fadeInContent {
             from { opacity: 0; }
             to { opacity: 1; }
         }
 
-        /* Mobile View: Increase text size and zoom in images */
+        /* Mobile View: Increase logo and text size, zoom in images */
         @media (max-width: 768px) {
             .image-container {
                 width: 100%;
@@ -97,12 +96,13 @@
                 transform: scale(1.2); /* Zoom in effect for a social media style */
             }
 
-            .overlay-text h1 {
-                font-size: 10vw;
+            .overlay-content h1 {
+                font-size: 6vw; /* Adjusting text size for mobile */
             }
 
-            .overlay-text p {
-                font-size: 5vw;
+            .overlay-content img {
+                width: 90%;
+                max-width: none;
             }
         }
     </style>
@@ -114,9 +114,9 @@
             <img src="kitchen2.jpg" alt="Modern Kitchen 2">
             <img src="kitchen3.jpg" alt="Modern Kitchen 3">
         </div>
-        <div class="overlay-text">
+        <div class="overlay-content">
             <h1>Coming Soon...</h1>
-            <h1>JDJ Concepts</h1>
+            <img src="jdj_concepts_logo_2w_transparent.png" alt="JDJ Concepts Logo">
         </div>
     </div>
 
